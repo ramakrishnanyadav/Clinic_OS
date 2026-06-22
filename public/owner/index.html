@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Dashboard - ClinicFlow OS</title>
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <nav style="margin-bottom: 2rem;">
+      <a href="/" style="color: var(--text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='var(--text-main)'" onmouseout="this.style.color='var(--text-muted)'">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Back to OS Launchpad
+      </a>
+    </nav>
+    <header>
+      <h1>Clinic Analytics</h1>
+      <p id="date-display">Today</p>
+    </header>
+
+    <div class="grid">
+      <div class="card stat-card">
+        <h3>Patients Served</h3>
+        <span class="value" id="served-count">--</span>
+      </div>
+      
+      <div class="card stat-card">
+        <h3>Abandonment Rate</h3>
+        <span class="value text-danger" id="abandonment-rate">--%</span>
+        <p class="subtitle" id="abandonment-subtitle">Est. revenue impact: --</p>
+      </div>
+
+      <div class="card stat-card">
+        <h3>Avg Wait Time</h3>
+        <span class="value" id="avg-wait">-- min</span>
+      </div>
+
+      <div class="card stat-card">
+        <h3>Total Registered</h3>
+        <span class="value" id="total-reg">--</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

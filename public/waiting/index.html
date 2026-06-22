@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waiting Room - ClinicFlow OS</title>
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="waiting.css">
+</head>
+<body>
+  <div class="container">
+    <nav style="margin-bottom: 2rem;">
+      <a href="/" style="color: var(--text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='var(--text-main)'" onmouseout="this.style.color='var(--text-muted)'">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Back to OS Launchpad
+      </a>
+    </nav>
+    <header>
+      <h1>Dr. Mehta's Waiting Room</h1>
+    </header>
+
+    <div class="main-display">
+      <span class="label" style="font-size: 1.5rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;">Now Serving</span>
+      <h1 id="current-token" class="massive-text" style="font-size: 5rem; margin-top: 1rem;">Queue Not Started</h1>
+      
+      <div class="global-stats" style="display: flex; gap: 3rem; justify-content: center; margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">
+        <div class="stat-mini">
+          <span style="display: block; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Patients Waiting</span>
+          <b id="global-waiting-count" style="font-size: 2.5rem; color: var(--text-main);">0</b>
+        </div>
+        <div class="stat-mini">
+          <span style="display: block; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Avg Wait</span>
+          <b id="global-avg-wait" style="font-size: 2.5rem; color: var(--warning);">--</b>
+        </div>
+      </div>
+    </div>
+
+    <div id="emergency-banner" class="alert alert-warning banner" style="display: none;">
+      <p id="emergency-text"></p>
+    </div>
+
+    <div class="card patient-view" id="patient-view" style="display: none;">
+      <h2>Your Turn: <span id="my-token"></span></h2>
+      <div class="wait-stats">
+        <div class="stat">
+          <span class="label">Patients Ahead</span>
+          <span class="value" id="ahead-count">--</span>
+        </div>
+        <div class="stat">
+          <span class="label">Est. Wait Time</span>
+          <span class="value" id="wait-time">-- min</span>
+        </div>
+      </div>
+      <p id="wait-disclaimer" class="disclaimer">Based on clinic estimate</p>
+      
+      <div id="delay-badge" class="alert alert-warning" style="display: none;">
+        Doctor running behind · times updated
+      </div>
+
+      <div class="leave-mode-section">
+        <h3>Leave the Clinic Mode</h3>
+        <p>Sitting here is boring. Enter your phone number and we'll WhatsApp you when you're 3 tokens away.</p>
+        <div style="display: flex; gap: 10px;">
+          <input type="tel" id="notify-phone" placeholder="+91 98765 43210">
+          <button id="notify-btn" class="btn">Notify Me</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- For Demo purposes, to simulate a specific patient logging in -->
+    <div class="demo-login" id="demo-login">
+      <h3>Demo: View as Patient</h3>
+      <input type="text" id="demo-token" placeholder="Enter Token (e.g. GP-45)">
+      <button id="demo-btn" class="btn">View My Status</button>
+    </div>
+  </div>
+
+  <script type="module" src="waiting.js"></script>
+</body>
+</html>

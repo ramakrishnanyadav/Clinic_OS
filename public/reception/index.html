@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reception - ClinicFlow OS</title>
+  <link rel="stylesheet" href="../shared/tokens.css">
+  <link rel="stylesheet" href="reception.css">
+</head>
+<body>
+  <div class="container">
+    <nav style="margin-bottom: 2rem;">
+      <a href="/" style="color: var(--text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.95rem; transition: color 0.2s;" onmouseover="this.style.color='var(--text-main)'" onmouseout="this.style.color='var(--text-muted)'">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Back to OS Launchpad
+      </a>
+    </nav>
+    <header>
+      <h1>ClinicFlow OS - Reception</h1>
+      <div id="connection-status" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; padding: 0.5rem 1rem; background: rgba(255,255,255,0.05); border-radius: 20px;">
+        <span class="status-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--warning);"></span>
+        <span id="status-text">Connecting...</span>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- Registration Column -->
+      <div class="card">
+        <h2>Register Patient</h2>
+        <form id="register-form">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" required placeholder="Enter 10-digit number">
+          </div>
+          <div class="form-group">
+            <label>Patient Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <button type="submit" class="btn">Issue Token</button>
+        </form>
+
+        <div id="duplicate-warning" class="alert alert-warning" style="display: none; margin-top: 1rem;">
+          <h4>⚠ Patient already registered today</h4>
+          <p id="dup-details"></p>
+          <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button id="force-issue" class="btn" style="background: var(--warning); color: #000;">Issue Anyway</button>
+            <button id="cancel-issue" class="btn" style="background: transparent; border: 1px solid var(--warning); color: var(--warning);">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Queue Control Column -->
+      <div class="card">
+        <h2>Queue Management</h2>
+        <div class="current-token-display">
+          <span class="label">Current Token</span>
+          <h1 id="current-token">None</h1>
+        </div>
+        
+        <div id="delay-warning" class="alert alert-warning" style="display: none;">
+          ⚠ Doctor is running <span id="delay-minutes"></span> min over average
+        </div>
+
+        <button id="call-next-btn" class="btn" style="width: 100%; margin-bottom: 0.5rem; font-size: 1.2rem;">Call Next</button>
+        <button id="mark-done-btn" class="btn btn-success" style="width: 100%; margin-bottom: 1rem; font-size: 1.2rem; display: none;">Mark Done</button>
+
+        <div class="emergency-section">
+          <h3>Emergency Injection</h3>
+          <input type="text" id="emergency-name" placeholder="Patient Name (Emergency)">
+          <button id="inject-emergency-btn" class="btn btn-danger" style="width: 100%; margin-top: 0.5rem;">Inject Emergency</button>
+        </div>
+      </div>
+
+      <!-- Queue Visibility Column -->
+      <div class="card">
+        <h2>Waiting Queue</h2>
+        <div class="queue-stats" style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--text-muted); font-weight: 500;">
+          <span>Patients Waiting:</span>
+          <span id="waiting-count">0</span>
+        </div>
+        <div id="queue-list" class="queue-list">
+          <!-- Populated by JS -->
+          <div style="color: var(--text-muted); text-align: center; padding: 2rem;">No patients waiting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="reception.js"></script>
+</body>
+</html>
